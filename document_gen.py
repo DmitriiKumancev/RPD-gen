@@ -17,7 +17,7 @@ MONTHS = {
     12: 'Декабря'
 }
 
-def create_document(course_code, course_name, specialty_code, specialty_name, qualification, approval_year):
+def create_document(course_code, course_name, specialty_code, specialty_name, qualification, approval_year, semesters, total_hours):
     tpl = DocxTemplate('template.docx')
     current_date = datetime.now()
     day = current_date.day
@@ -31,6 +31,8 @@ def create_document(course_code, course_name, specialty_code, specialty_name, qu
         'specialty_name': specialty_name,
         'qualification': qualification,
         'approval_year': approval_year,
+        'semesters': semesters,
+        'total_hours': total_hours,
         'day': day,
         'month': month,
         'year': year

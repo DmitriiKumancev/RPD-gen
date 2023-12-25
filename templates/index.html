@@ -105,6 +105,14 @@
                 {{ form.approval_year(class="form-control") }}
             </div>
             <div class="form-group">
+                {{ form.semesters.label(class="form-label") }}
+                {{ form.semesters(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.total_hours.label(class="form-label") }}
+                {{ form.total_hours(class="form-control") }}
+            </div>
+            <div class="form-group">
                 {{ form.submit(class="btn btn-primary") }}
             </div>
         </form>

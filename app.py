@@ -15,6 +15,8 @@ class DocumentForm(FlaskForm):
     specialty_name = StringField('Название специальности', validators=[DataRequired()])
     qualification = StringField('Квалификация', validators=[DataRequired()])
     approval_year = StringField('Год создания документа', validators=[DataRequired()])
+    semesters = StringField('Семестры изучения', validators=[DataRequired()])
+    total_hours = StringField('Общий объем часов', validators=[DataRequired()])
     submit = SubmitField('Скачать')
 
 @app.route('/', methods=['GET', 'POST'])
@@ -28,7 +30,9 @@ def index():
             form.specialty_code.data,
             form.specialty_name.data,
             form.qualification.data,
-            form.approval_year.data
+            form.approval_year.data,
+            form.semesters.data,  
+            form.total_hours.data 
         )
 
         # Удаление временного файла после отправки
