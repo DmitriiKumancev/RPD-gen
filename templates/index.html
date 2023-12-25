@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Конструктор РПД</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Дополнительные стили и скрипты, если необходимо -->
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        .custom-header {
+            background: linear-gradient(to bottom, #007BFF, #FFFFFF); /* изменен градиент на сине-голубой */
+            color: white;
+        }
+
+        h1 {
+            color: #1565c0; /* изменен цвет текста на более яркий синий */
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 0;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<header class="custom-header py-3">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <img src="static/logo.png" alt="Логотип" class="img-fluid" style="max-height: 130px;">
+            </div>
+            <div class="col">
+                <!-- Дополнительные элементы в шапке, если необходимо -->
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Создание Рабочей Программы Дисциплины</h1>
+
+    <!-- Выпадающий список шаблонов -->
+    <div class="form-group">
+        <label for="templateSelect">Выберите шаблон:</label>
+        <select class="form-control" id="templateSelect" name="templateSelect" onchange="showTemplateForm()">
+            <option value="base_disciplines">Шаблон базовых дисциплин</option>
+            <option value="professional_module">Шаблон профессионального модуля</option>
+            <option value="general_professional_disciplines">Шаблон общепрофессиональных дисциплин</option>
+        </select>
+    </div>
+    
+    <!-- Форма для шаблона базовых дисциплин -->
+    <div id="baseDisciplinesForm" style="display: none;">
+        <form method="post" class="needs-validation" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.course_code.label(class="form-label") }}
+                {{ form.course_code(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.course_name.label(class="form-label") }}
+                {{ form.course_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.specialty_code.label(class="form-label") }}
+                {{ form.specialty_code(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.specialty_name.label(class="form-label") }}
+                {{ form.specialty_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.qualification.label(class="form-label") }}
+                {{ form.qualification(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.approval_year.label(class="form-label") }}
+                {{ form.approval_year(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    <!-- Здесь могут быть другие блоки форм для разных шаблонов -->
+</div>
+
+<script>
+    function showTemplateForm() {
+        var selectedTemplate = document.getElementById('templateSelect').value;
+        var baseDisciplinesForm = document.getElementById('baseDisciplinesForm');
+        // Скрыть все формы
+        baseDisciplinesForm.style.display = 'none';
+        // Добавьте здесь логику для других форм, если они есть
+        
+        // Отобразить выбранную форму
+        if (selectedTemplate === 'base_disciplines') {
+            baseDisciplinesForm.style.display = 'block';
+        }
+        // Добавьте аналогичные условия для других шаблонов
+        // Если у вас есть другие формы, добавьте их сюда
+        // Пример:
+        // var professionalModuleForm = document.getElementById('professionalModuleForm');
+        // if (selectedTemplate === 'professional_module') {
+        //     professionalModuleForm.style.display = 'block';
+        // } else {
+        //     professionalModuleForm.style.display = 'none';
+        // }
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.9/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
