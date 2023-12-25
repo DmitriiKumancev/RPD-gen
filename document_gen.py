@@ -1,5 +1,6 @@
 from docxtpl import DocxTemplate
 from datetime import datetime
+from tempfile import NamedTemporaryFile
 
 MONTHS = {
     1: 'Января',
@@ -23,7 +24,6 @@ def create_document(course_code, course_name, specialty_code, specialty_name, qu
     month = MONTHS[current_date.month]
     year = current_date.year
     
-
     context = {
         'course_code': course_code,
         'course_name': course_name,
@@ -36,10 +36,11 @@ def create_document(course_code, course_name, specialty_code, specialty_name, qu
         'year': year
     }
 
-    # Генерация уникального имени файла
-    filename = f"{course_code}_{course_name}.docx".replace(" ", "_")
-    unique_filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{filename}"
     tpl.render(context)
-    tpl.save(unique_filename)
     
-    return unique_filename
+    # Генерация уникального имени файла и сохранение его во временной директории
+    with NamedTemporaryFile(delete=False, suffix='.docx', dir='/tmp') as tmp:
+        tpl.save(tmp.name)
+        unique_filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{course_code}_{course_name}.docx".replace(" ", "_")
+        # Возвращаем путь к временному файлу вместо имени файла
+        return tmp.name, unique_filename
