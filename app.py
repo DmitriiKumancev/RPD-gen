@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file, after_this_request
+from flask import Flask, render_template, send_file, after_this_request, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -23,6 +23,15 @@ class DocumentForm(FlaskForm):
 def index():
     form = DocumentForm()
     if form.validate_on_submit():
+        try:
+            # Convert form input to integers
+            semesters_int = int(form.semesters.data)
+            total_hours_int = int(form.total_hours.data)
+        except ValueError:
+            # Handle the error if the conversion fails
+            flash('Пожалуйста, введите действительное число для семестров и общего объема часов.')
+            return render_template('index.html', form=form)
+        
         # Создание документа с параметрами из формы
         temp_file_path, unique_filename = create_document(
             form.course_code.data,
@@ -31,8 +40,8 @@ def index():
             form.specialty_name.data,
             form.qualification.data,
             form.approval_year.data,
-            form.semesters.data,  
-            form.total_hours.data 
+            semesters_int,  # Use the converted integer
+            total_hours_int  # Use the converted integer
         )
 
         # Удаление временного файла после отправки
