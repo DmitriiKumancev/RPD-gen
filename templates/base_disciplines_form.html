@@ -1,0 +1,42 @@
+<!-- base_disciplines_form.html -->
+
+<div id="baseDisciplinesForm" style="display: none;">
+    <form method="post" class="needs-validation" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.course_code.label(class="form-label") }}
+            {{ form.course_code(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.course_name.label(class="form-label") }}
+            {{ form.course_name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.specialty_code.label(class="form-label") }}
+            {{ form.specialty_code(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.specialty_name.label(class="form-label") }}
+            {{ form.specialty_name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.qualification.label(class="form-label") }}
+            {{ form.qualification(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.approval_year.label(class="form-label") }}
+            {{ form.approval_year(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.semesters.label(class="form-label") }}
+            {{ form.semesters(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.total_hours.label(class="form-label") }}
+            {{ form.total_hours(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
