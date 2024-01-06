@@ -1,25 +1,11 @@
-from flask import Flask, render_template, send_file, after_this_request, flash
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
-from document_gen import create_document
+from flask import Blueprint, render_template, send_file, after_this_request, flash
+from ..forms.document_form import DocumentForm
+from ..services.document_service import create_document
 import os
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key'
+main = Blueprint('main', __name__)
 
-class DocumentForm(FlaskForm):
-    course_code = StringField('Код учебной дисциплины', validators=[DataRequired()])
-    course_name = StringField('Название учебной дисциплины', validators=[DataRequired()])
-    specialty_code = StringField('Код специальности', validators=[DataRequired()])
-    specialty_name = StringField('Название специальности', validators=[DataRequired()])
-    qualification = StringField('Квалификация', validators=[DataRequired()])
-    approval_year = StringField('Год создания документа', validators=[DataRequired()])
-    semesters = StringField('Семестры изучения', validators=[DataRequired()])
-    total_hours = StringField('Общий объем часов', validators=[DataRequired()])
-    submit = SubmitField('Скачать')
-
-@app.route('/', methods=['GET', 'POST'])
+@main.route('/', methods=['GET', 'POST'])
 def index():
     form = DocumentForm()
     if form.validate_on_submit():
@@ -58,6 +44,3 @@ def index():
         )
 
     return render_template('index.html', form=form)
-
-if __name__ == '__main__':
-    app.run()
