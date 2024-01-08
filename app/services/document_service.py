@@ -3,7 +3,7 @@ from datetime import datetime
 from tempfile import NamedTemporaryFile
 from app.utils import pluralize_hours, pluralize_semesters, MONTHS
 
-def create_document(course_code, course_name, specialty_code, specialty_name, qualification, approval_year, semesters, total_hours):
+def create_document(course_code, course_name, specialty_code, specialty_name, qualification, approval_year, semesters, total_hours, course_objective):
     if not isinstance(semesters, int):
         raise TypeError(f"Expected 'semesters' to be an int, got {type(semesters)} instead.")
     if not isinstance(total_hours, int):
@@ -24,6 +24,7 @@ def create_document(course_code, course_name, specialty_code, specialty_name, qu
         'approval_year': approval_year,
         'semesters': pluralize_semesters(semesters),
         'total_hours': pluralize_hours(total_hours),
+        'course_objective': course_objective,
         'day': day,
         'month': month,
         'year': year

@@ -11,4 +11,5 @@ class DocumentForm(FlaskForm):
     approval_year = StringField('Год создания документа', validators=[DataRequired()])
     semesters = StringField('Семестры изучения', validators=[DataRequired()])
     total_hours = StringField('Общий объем часов', validators=[DataRequired()])
+    course_objective = StringField('Цель освоения учебной дисциплины', validators=[DataRequired()])
     submit = SubmitField('Скачать')

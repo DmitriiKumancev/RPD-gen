@@ -27,7 +27,8 @@ def index():
             form.qualification.data,
             form.approval_year.data,
             semesters_int,  # Use the converted integer
-            total_hours_int  # Use the converted integer
+            total_hours_int,  # Use the converted integer
+            form.course_objective.data  
         )
 
         # Удаление временного файла после отправки

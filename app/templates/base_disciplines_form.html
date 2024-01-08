@@ -36,6 +36,10 @@
             {{ form.total_hours(class="form-control") }}
         </div>
         <div class="form-group">
+            {{ form.course_objective.label(class="form-label") }}
+            {{ form.course_objective(class="form-control") }}
+        </div>
+        <div class="form-group">
             {{ form.submit(class="btn btn-primary") }}
         </div>
     </form>
